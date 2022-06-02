@@ -1,0 +1,26 @@
+{
+    "id": "ED4D61CB",
+    "path": "C:/Users/FuchsMD/OneDrive - BASF/PhD/R-Skript/my packages/rdmfr/R/read_drift_curve.R",
+    "project_path": "R/read_drift_curve.R",
+    "type": "r_source",
+    "hash": "3925868740",
+    "contents": "",
+    "dirty": false,
+    "created": 1654182720915.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "4,16",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1654183217,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1654183217568,
+    "read_only": false,
+    "read_only_alternatives": []
+}
