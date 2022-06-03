@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @importFrom rlist list.load
-load_drift_model_run <- function(project_folder, save_file){
-  data <- rlist::list.load(paste0(project_folder,"/",save_file,".rdata"))
+load_drift_model_run <- function(project_folder, save_file) {
+  data <- rlist::list.load(paste0(project_folder, "/", save_file, ".rdata"))
   return(data)
 }

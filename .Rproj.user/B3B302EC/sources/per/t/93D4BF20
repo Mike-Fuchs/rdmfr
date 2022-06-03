@@ -3,24 +3,24 @@
     "path": "C:/Users/FuchsMD/OneDrive - BASF/PhD/R-Skript/my packages/rdmfr/R/run_drift_model.R",
     "project_path": "R/run_drift_model.R",
     "type": "r_source",
-    "hash": "2093990998",
+    "hash": "78427304",
     "contents": "",
     "dirty": false,
     "created": 1654180986716.0,
     "source_on_save": false,
-    "relative_order": 3,
+    "relative_order": 4,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "11,16",
-        "scrollLine": "0"
+        "cursorPosition": "58,92",
+        "scrollLine": "33"
     },
     "folds": "",
-    "lastKnownWriteTime": 1654183217,
+    "lastKnownWriteTime": 1654249203,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1654183217497,
+    "last_content_update": 1654249203550,
     "read_only": false,
     "read_only_alternatives": []
 }

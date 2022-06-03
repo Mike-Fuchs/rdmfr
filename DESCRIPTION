@@ -1,13 +1,17 @@
-Package: rdmfr
 Type: Package
-Title: Run Drift Model From R
+Package: rdmfr
+Title: Run Drift Model from R
 Version: 0.1.0
 Author: Mike Fuchs <m.d.fuchs@live.de>
 Maintainer: Mike Fuchs <m.d.fuchs@live.de>
 Description: This Package runs my drift model.
-License: GPL-3
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.2.0
+License: GPL (>= 3)
 Imports: 
-    rlist, foreach, parallel, doParallel, raster, utils
+    doParallel,
+    foreach,
+    parallel,
+    raster,
+    rlist,
+    utils
+Encoding: UTF-8
+RoxygenNote: 7.2.0
