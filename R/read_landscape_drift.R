@@ -2,7 +2,7 @@
 #'
 #' @param path dummy
 #'
-#' @return
+#' @return dummy
 #' @export
 #'
 #' @importFrom raster raster

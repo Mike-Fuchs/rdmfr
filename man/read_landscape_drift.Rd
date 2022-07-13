@@ -9,6 +9,9 @@ read_landscape_drift(path)
 \arguments{
 \item{path}{dummy}
 }
+\value{
+dummy
+}
 \description{
 Reads a landscape drift pattern
 }

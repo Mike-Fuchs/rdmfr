@@ -132,10 +132,9 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 
     # controle_input
     sink(paste0(input_path, "/", names(run_input[5]), ".txt"))
-    writeLines(paste0(c(sprintf(c(rep("%20s", 3)), c("code1", "drop_out", "no_evap"))), collapse = ""), useBytes = F)
-    writeLines(paste0(c(sprintf(c(rep("%20.0f", 3)), run_input[[5]][1, 1:3])), collapse = ""), useBytes = F)
-    writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("dsd_file_name:", run_input[[5]][1, 4]))), collapse = ""), useBytes = F)
-    writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("landscape_file_name:", run_input[[5]][1, 5]))), collapse = ""), useBytes = F)
+    writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("mode:", run_input[[5]][1, 1]))), collapse = ""), useBytes = F)
+    writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("dsd_file_name:", run_input[[5]][1, 2]))), collapse = ""), useBytes = F)
+    writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("landscape_file_name:", run_input[[5]][1, 3]))), collapse = ""), useBytes = F)
     sink()
 
     # move executable

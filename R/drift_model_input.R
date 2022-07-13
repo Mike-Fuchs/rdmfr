@@ -17,8 +17,6 @@ drift_model_input <- function() {
       AI_density = NA,
       AI_molar_mass = NA,
       AI_vapor_pressure = NA,
-      AI_diffusion_coef = NA,
-      AI_diffusion_temp = NA,
       swath_number = NA
     ),
     droplet_spectrum_input = data.frame(
@@ -40,8 +38,6 @@ drift_model_input <- function() {
     ),
     controle_input = data.frame(
       code1 = NA,
-      drop_out = NA,
-      no_evap = NA,
       dsd_file_name = NA,
       landscape_file_name = NA
     )
