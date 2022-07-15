@@ -28,16 +28,14 @@ drift_model_input <- function() {
       humidity = NA,
       wind_speed = NA,
       wind_direction = NA,
-      ambient_pressure = NA
-    ),
-    gaussian_input = data.frame(
-      k_horizontal = NA,
-      k_vertical = NA,
-      deposition_height = NA,
-      max_dist = NA
+      ambient_pressure = NA,
+      k_horizontal =NA,
+      v_horizontal = NA
     ),
     controle_input = data.frame(
-      code1 = NA,
+      mode = NA,
+      deposition_height = NA,
+      max_dist = NA,
       dsd_file_name = NA,
       landscape_file_name = NA
     )
