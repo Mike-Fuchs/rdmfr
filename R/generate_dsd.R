@@ -335,7 +335,8 @@ generate_dsd <- function(VMD, rel_span, DV0.1, DV0.9, Dsize, fract_Dsize, min_si
   dc$cum_fract <- cumsum(dc$fract)
 
   #limit columns for output
-  dc_out <- dc[,c(1,6,7)]
+  dc_out <- dc[,c(1,7)]
+  dc_out[,1] <- dc_out[,1]*1E-6
 
   return(dc_out)
 }

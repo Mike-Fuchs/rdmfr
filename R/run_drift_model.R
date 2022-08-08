@@ -53,11 +53,9 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
   output <- foreach(i_run = 1:n_run) %dopar% {
     # define header
     header <- list(
-      application_input = data.frame(tractor_speed = "[m/s]", boom_width = "[m]", boom_height = "[m]", nozzle_angle = "[\\u00b0]", application_pres = "[kPa]", app_rate_mh = "[m\\u00b3/h]", app_rate_mha = "[m\\u00b3/ha]", app_rate_kgha = "[kg/ha]", sol_concentration = "[kg/m\\u00b3]", AI_density = "[kg/m\\u00b3]", AI_molar_mass = "[kg/mol]", AI_vapor_pressure = "[Pa]", AI_diffusion_coef = "[m\\u00b2/s]", AI_diffusion_temp = "[\\u00b0C]", swath_number = "[-]"),
+      application_input = data.frame(tractor_speed = "[m/s]", boom_width = "[m]", boom_height = "[m]", nozzle_angle = "[\u00b0]", application_pres = "[kPa]", app_rate_mh = "[m\u00b3/h]", app_rate_mha = "[m\u00b3/ha]", app_rate_kgha = "[kg/ha]", sol_concentration = "[kg/m\u00b3]", AI_density = "[kg/m\u00b3]", AI_molar_mass = "[kg/mol]", AI_vapor_pressure = "[Pa]", swath_number = "[-]"),
       droplet_spectrum_input = data.frame(droplet_size = "[m]", cum_fraction = "[-]"),
-      environment_input = data.frame(temperature = "[\\u00b0C]", humidity = "[-]", wind_speed = "[m/s]", wind_direction = "[\\u00b0]", ambient_pressure = "[Pa]"),
-      gaussian_input = data.frame(k_horizontal = "[m\\u00b2/s]", k_vertical = "[m\\u00b2/s]", deposition_height = "[m]", max_dist = "[m]")
-    )
+      environment_input = data.frame(temperature = "[\u00b0C]", humidity = "[-]", wind_speed = "[m/s]", wind_direction = "[\u00b0]", ambient_pressure = "[Pa]",k_horizontal = "[m\u00b2/s]", k_vertical = "[m\u00b2/s]"))
 
     # input manipulation
     if (!is.null(parameter)) {
@@ -122,13 +120,12 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     sink()
 
     # controle_input
-    sink(paste0(input_path, "/", names(run_input[5]), ".txt"))
+    sink(paste0(input_path, "/", names(run_input[4]), ".txt"))
     writeLines(paste0(c(sprintf(c(rep("%20s", 3)), c("mode", "dep_height", "max_dist"))), collapse = ""), useBytes = F)
-    writeLines(paste0(c(sprintf(c(rep("%20.0f", 3)), run_input[[5]][1, 1:3])), collapse = ""), useBytes = F)
-    writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("dsd_file_name:", run_input[[5]][1, 4]))), collapse = ""), useBytes = F)
-    writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("landscape_file_name:", run_input[[5]][1, 5]))), collapse = ""), useBytes = F)
+    writeLines(paste0(c(sprintf(c("%20.0f","%20.1f","%20.0f"), run_input[[4]][1:3])), collapse = ""), useBytes = F)
+    writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("dsd_file_name:", run_input[[4]][4]))), collapse = ""), useBytes = F)
+    writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("landscape_file_name:", run_input[[4]][5]))), collapse = ""), useBytes = F)
     sink()
-
 
     # move executable
     split <- strsplit(executable_source, "/")[[1]]
