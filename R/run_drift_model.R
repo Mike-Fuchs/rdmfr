@@ -137,7 +137,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     shell(exe_name, intern = T, wait = T)
 
     # read results
-    if (run_input[[5]][1, 1] == 1) {
+    if (run_input[[4]][1, 1] == 1) {
       # read drift curve
       header <- read.csv(paste0(output_path, "/drift_curve_output.txt"), sep = "", header = F, nrows = 1)
       data <- read.csv(paste0(output_path, "/drift_curve_output.txt"), sep = "", header = F, skip = 2)
