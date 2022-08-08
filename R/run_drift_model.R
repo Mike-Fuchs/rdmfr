@@ -160,7 +160,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     )
     names(result$output) <- run_index
   } else {
-    result <- list(output)
+    result <- list(output=output)
   }
 
   # save results to file
