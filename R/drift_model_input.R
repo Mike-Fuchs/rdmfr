@@ -30,7 +30,7 @@ drift_model_input <- function() {
       wind_direction = NA,
       ambient_pressure = NA,
       k_horizontal =NA,
-      v_horizontal = NA
+      k_vertical = NA
     ),
     controle_input = data.frame(
       mode = NA,
