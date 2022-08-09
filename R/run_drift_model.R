@@ -156,7 +156,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     counter <- counter + 1
     t2 <- Sys.time()
     t3 <- t2-t1
-    print(paste0(counter," of ",n_run, " finished in: ", t3, " seconds, estimated remaining time: ",(t3/counter)*(n_run-counter)," seconds."))
+    message(paste0(counter," of ",n_run, " finished in: ", t3, " seconds, estimated remaining time: ",(t3/counter)*(n_run-counter)," seconds."))
 
   }
   # stopping the cluster
