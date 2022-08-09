@@ -62,12 +62,12 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
       run_input <- input_data
       for (i_par in 1:nrow(parameter)) {
         # find position
-        for (list_i in 1:5) {
+        for (list_i in 1:4) {
           if (parameter[i_par, 1] %in% names(run_input[[list_i]])) {
             break()
           }
         }
-        table_i <- grep(names(run_input[[3]]), pattern = parameter[1, 1])
+        table_i <- grep(names(run_input[[list_i]]), pattern = parameter[i_par, 1])
         # change value
         if (parameter[i_par, 2] == "pctchg") {
           run_input[[list_i]][, table_i] <- run_input[[list_i]][, table_i] + (run_input[[list_i]][, table_i] * (as.numeric(parameter[i_par, i_run + 2]) / 100))
