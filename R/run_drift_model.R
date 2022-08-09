@@ -49,6 +49,10 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
   cl <- parallel::makeCluster(n_thread)
   doParallel::registerDoParallel(cl)
 
+  # user massage
+  t1 <- Sys.time()
+  counter <- 0
+
   # main loop
   output <- foreach(i_run = 1:n_run) %dopar% {
     # define header
@@ -148,6 +152,12 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
       map <- raster::raster(paste0(output_path, "/landscape_drift.asc"))
       return(map)
     }
+    # update counter
+    counter <- counter + 1
+    t2 <- Sys.time()
+    t3 <- t2-t1
+    print(paste0(counter," of ",n_run, " finished in: ", t3, " seconds, estimated remaining time: ",(t3/counter)*(n_run-counter)," seconds."))
+
   }
   # stopping the cluster
   stopCluster(cl)
