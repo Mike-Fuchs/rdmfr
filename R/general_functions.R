@@ -9,7 +9,7 @@
 #' @keywords internal
 #'
 display_progress <- function(n, nmax, t0, word){
-  t1 <- now()
+  t1 <- lubridate::now()
   time_elaps  <- interval(t0,t1) %>%
     round(.) %>%
     as.period(.)

@@ -13,12 +13,12 @@
 #' @return dummy
 #' @export
 #'
-#' @importFrom foreach "%dopar%"
-#' @importFrom foreach foreach
-#' @importFrom parallel makeCluster
+#' @importFrom foreach "%dopar%" foreach
+#' @importFrom doSNOW registerDoSNOW
+#' @importFrom parallel makeCluster stopCluster detectCores
 #' @importFrom parallel stopCluster
 #' @importFrom parallel detectCores
-#' @importFrom doParallel registerDoParallel
+#' @importFrom lubridate now
 #' @importFrom raster raster
 #' @importFrom utils read.csv
 run_drift_model <- function(project_folder, input_data, executable_source, parameter = NULL, n_thread = NULL, save_file = NULL, return_results = T, keep_folder = T, quiet= F) {
@@ -48,13 +48,13 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     n_thread <- min(max(n_run, 1), parallel::detectCores())
   }
   cl <- parallel::makeCluster(n_thread)
-  doParallel::registerDoParallel(cl)
+  doSNOW::registerDoSNOW(cl)
 
   # user massage
   if(!quiet) {
     cat("Performing", n_run, "simulation"%&%plural(n_run),"on", n_thread,
         "core"%&%plural(n_thread)%&%":", "\n")
-    t0 <- now()
+    t0 <- lubridate::now()
     progress <- function(n){
       display_progress(n, n_run, t0, "Simulation")
     }
