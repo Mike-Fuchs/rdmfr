@@ -8,6 +8,7 @@
 #' @param save_file dummy
 #' @param return_results dummy
 #' @param keep_folder (optional) Logical. If \code{keep_folder = TRUE} folder of the model run will be keept.
+#' @param quiet dummy
 #'
 #' @return dummy
 #' @export
@@ -20,7 +21,7 @@
 #' @importFrom doParallel registerDoParallel
 #' @importFrom raster raster
 #' @importFrom utils read.csv
-run_drift_model <- function(project_folder, input_data, executable_source, parameter = NULL, n_thread = NULL, save_file = NULL, return_results = T, keep_folder = T) {
+run_drift_model <- function(project_folder, input_data, executable_source, parameter = NULL, n_thread = NULL, save_file = NULL, return_results = T, keep_folder = T, quiet= F) {
   # checking inputs
 
 
@@ -50,11 +51,20 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
   doParallel::registerDoParallel(cl)
 
   # user massage
-  t1 <- Sys.time()
-  counter <- 0
+  if(!quiet) {
+    cat("Performing", n_run, "simulation"%&%plural(n_run),"on", n_thread,
+        "core"%&%plural(n_thread)%&%":", "\n")
+    t0 <- now()
+    progress <- function(n){
+      display_progress(n, n_run, t0, "Simulation")
+    }
+    opts <- list(progress = progress)
+  } else {
+    opts <- list()
+  }
 
   # main loop
-  output <- foreach(i_run = 1:n_run) %dopar% {
+  output <- foreach(i_run = 1:n_run, .packages = c("dplyr", "lubridate"), .options.snow = opts) %dopar% {
     # define header
     header <- list(
       application_input = data.frame(tractor_speed = "[m/s]", boom_width = "[m]", boom_height = "[m]", nozzle_angle = "[\u00b0]", application_pres = "[kPa]", app_rate_mh = "[m\u00b3/h]", app_rate_mha = "[m\u00b3/ha]", app_rate_kgha = "[kg/ha]", sol_concentration = "[kg/m\u00b3]", AI_density = "[kg/m\u00b3]", AI_molar_mass = "[kg/mol]", AI_vapor_pressure = "[Pa]", swath_number = "[-]"),
@@ -161,6 +171,13 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
   }
   # stopping the cluster
   stopCluster(cl)
+
+  ## Show total runs and elapsed time in console if not quiet
+  if(!quiet) {
+    finish_progress(n_run, t0, "simulation")
+    ## Delete the time stamp t0 created for the progress estimation
+    rm(t0)
+  }
 
   # restructure results
   if (!is.null(parameter)) {

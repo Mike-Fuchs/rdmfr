@@ -14,6 +14,8 @@ Imports:
     rlist,
     utils,
     stats,
-    minpack.lm
+    minpack.lm,
+    dplyr,
+    lubridate
 Encoding: UTF-8
 RoxygenNote: 7.2.0
