@@ -16,8 +16,6 @@
 #' @importFrom foreach "%dopar%" foreach
 #' @importFrom doSNOW registerDoSNOW
 #' @importFrom parallel makeCluster stopCluster detectCores
-#' @importFrom parallel stopCluster
-#' @importFrom parallel detectCores
 #' @importFrom lubridate now
 #' @importFrom raster raster
 #' @importFrom utils read.csv
@@ -162,15 +160,9 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
       map <- raster::raster(paste0(output_path, "/landscape_drift.asc"))
       return(map)
     }
-    # update counter
-    counter <- counter + 1
-    t2 <- Sys.time()
-    t3 <- t2-t1
-    message(paste0(counter," of ",n_run, " finished in: ", t3, " seconds, estimated remaining time: ",(t3/counter)*(n_run-counter)," seconds."))
-
   }
   # stopping the cluster
-  stopCluster(cl)
+  parallel::stopCluster(cl)
 
   ## Show total runs and elapsed time in console if not quiet
   if(!quiet) {
@@ -195,15 +187,15 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     rlist::list.save(result, paste0(project_folder, "/", save_file, ".rdata"))
   }
 
-  # return results
-  if (return_results) {
-    return(result)
-  }
-
   # keep folder
   if (!keep_folder) {
     for (i_run in 1:n_run) {
-      unlink(paste0(project_folder, "/", run_index[i_run]), recursive = T)
+      unlink(paste0(project_folder, "/", run_index[i_run]), recursive = T, force = T)
     }
+  }
+
+  # return results
+  if (return_results) {
+    return(result)
   }
 }
