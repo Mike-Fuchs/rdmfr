@@ -127,7 +127,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(run_input[[3]]))), names(run_input[[3]]))), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[3]]))), header[[3]])), collapse = ""), useBytes = F)
     for (i in 1:nrow(run_input[[3]])) {
-      writeLines(paste0(c(sprintf(c(rep("%20.2f", ncol(run_input[[3]]))), run_input[[3]][i, ])), collapse = ""), useBytes = F)
+      writeLines(paste0(c(sprintf(c(rep("%20.4f", ncol(run_input[[3]]))), run_input[[3]][i, ])), collapse = ""), useBytes = F)
     }
     sink()
 
