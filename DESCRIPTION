@@ -16,6 +16,7 @@ Imports:
     minpack.lm,
     dplyr,
     lubridate,
-    doSNOW
+    doSNOW,
+    processx
 Encoding: UTF-8
 RoxygenNote: 7.2.1

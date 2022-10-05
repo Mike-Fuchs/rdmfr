@@ -19,6 +19,7 @@
 #' @importFrom lubridate now
 #' @importFrom raster raster
 #' @importFrom utils read.csv
+#' @importFrom processx run
 run_drift_model <- function(project_folder, input_data, executable_source, parameter = NULL, n_thread = NULL, save_file = NULL, return_results = T, keep_folder = T, quiet= F) {
   # checking inputs
 
@@ -145,8 +146,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     invisible(file.copy(executable_source, paste0(project_path, "/", exe_name), overwrite = F))
 
     # run executable
-    setwd(project_path)
-    shell(exe_name, intern = T, wait = T)
+    processx::run(exe_name, wd=project_path, error_on_status = FALSE)
 
     # read results
     if (run_input[[4]][1, 1] == 1) {
