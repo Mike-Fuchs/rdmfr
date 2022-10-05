@@ -146,7 +146,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     invisible(file.copy(executable_source, paste0(project_path, "/", exe_name), overwrite = F))
 
     # run executable
-    processx::run(exe_name, wd=project_path, error_on_status = FALSE)
+    invisible(processx::run(exe_name, wd=project_path, error_on_status = FALSE))
 
     # read results
     if (run_input[[4]][1, 1] == 1) {
