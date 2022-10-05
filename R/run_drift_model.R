@@ -189,6 +189,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 
   # keep folder
   if (!keep_folder) {
+    closeAllConnections()
     for (i_run in 1:n_run) {
       unlink(paste0(project_folder, "/", run_index[i_run]), recursive = T, force = T)
     }
