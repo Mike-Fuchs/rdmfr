@@ -110,7 +110,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(run_input[[1]]))), names(run_input[[1]]))), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[1]]))), header[[1]])), collapse = ""), useBytes = F)
     for (i in 1:nrow(run_input[[1]])) {
-      writeLines(paste0(c(sprintf(c(rep("%20.2f", ncol(run_input[[1]]))), run_input[[1]][i, ])), collapse = ""), useBytes = F)
+      writeLines(paste0(c(sprintf(c(rep("%20.2f", 11),"%20.2e","%20.2f"), run_input[[1]][i, ])), collapse = ""), useBytes = F)
     }
     sink()
 
@@ -119,7 +119,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(run_input[[2]]))), names(run_input[[2]]))), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[2]]))), header[[2]])), collapse = ""), useBytes = F)
     for (i in 1:nrow(run_input[[2]])) {
-      writeLines(paste0(c(sprintf(c("%20.8f", "%20.8f"), run_input[[2]][i, ])), collapse = ""), useBytes = F)
+      writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), run_input[[2]][i, ])), collapse = ""), useBytes = F)
     }
     sink()
 
@@ -128,7 +128,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(run_input[[3]]))), names(run_input[[3]]))), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[3]]))), header[[3]])), collapse = ""), useBytes = F)
     for (i in 1:nrow(run_input[[3]])) {
-      writeLines(paste0(c(sprintf(c(rep("%20.4f", ncol(run_input[[3]]))), run_input[[3]][i, ])), collapse = ""), useBytes = F)
+      writeLines(paste0(c(sprintf(c(rep("%20.2f", 6),rep("%20.2e", 4)), run_input[[3]][i, ])), collapse = ""), useBytes = F)
     }
     sink()
 
