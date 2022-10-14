@@ -110,7 +110,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(run_input[[1]]))), names(run_input[[1]]))), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[1]]))), header[[1]])), collapse = ""), useBytes = F)
     for (i in 1:nrow(run_input[[1]])) {
-      writeLines(paste0(c(sprintf(c(rep("%20.2f", 11),"%20.2e","%20.2f"), run_input[[1]][i, ])), collapse = ""), useBytes = F)
+      writeLines(paste0(c(sprintf(c(rep("%20.2f", 5),rep("%20.2e", 4),"%20.2f","%20.2e","%20.2e","%20.2f"), run_input[[1]][i, ])), collapse = ""), useBytes = F)
     }
     sink()
 
@@ -135,7 +135,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     # controle_input
     sink(paste0(input_path, "/", names(run_input[4]), ".txt"))
     writeLines(paste0(c(sprintf(c(rep("%20s", 3)), c("mode", "dep_height", "max_dist"))), collapse = ""), useBytes = F)
-    writeLines(paste0(c(sprintf(c("%20.0f","%20.1f","%20.0f"), run_input[[4]][1:3])), collapse = ""), useBytes = F)
+    writeLines(paste0(c(sprintf(c("%20.0f","%20.3f","%20.0f"), run_input[[4]][1:3])), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("dsd_file_name:", run_input[[4]][4]))), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("landscape_file_name:", run_input[[4]][5]))), collapse = ""), useBytes = F)
     sink()
