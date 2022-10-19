@@ -17,7 +17,8 @@ drift_model_input <- function() {
       AI_density = NA,
       AI_molar_mass = NA,
       AI_vapor_pressure = NA,
-      swath_number = NA
+      swath_number = NA,
+      field_length = NA
     ),
     droplet_spectrum_input = data.frame(
       droplet_size = NA,
@@ -33,7 +34,8 @@ drift_model_input <- function() {
       k_horizontal =NA,
       k_vertical = NA,
       roughness_height = NA,
-      A = NA
+      A = NA,
+      d = NA
     ),
     controle_input = data.frame(
       mode = NA,
