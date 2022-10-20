@@ -35,7 +35,8 @@ drift_model_input <- function() {
       k_vertical = NA,
       roughness_height = NA,
       A_dry_deposition = NA,
-      d_wind_profile = NA
+      canopy_height = NA,
+      LAI = NA
     ),
     controle_input = data.frame(
       mode = NA,
