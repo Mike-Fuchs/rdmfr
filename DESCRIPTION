@@ -1,7 +1,7 @@
 Type: Package
 Package: rdmfr
 Title: Run Drift Model from R
-Version: 0.1.10
+Version: 0.1.11
 Author: Mike Fuchs <m.d.fuchs@live.de>
 Maintainer: Mike Fuchs <m.d.fuchs@live.de>
 Description: This Package runs my drift model.
@@ -19,4 +19,4 @@ Imports:
     doSNOW,
     processx
 Encoding: UTF-8
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3

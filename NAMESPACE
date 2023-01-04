@@ -2,6 +2,7 @@
 
 export(drift_model_input)
 export(generate_dsd)
+export(generate_dsd_rr)
 export(load_drift_model_run)
 export(read_drift_curve)
 export(read_input_files)
