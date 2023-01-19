@@ -1,7 +1,7 @@
 Type: Package
 Package: rdmfr
 Title: Run Drift Model from R
-Version: 0.1.11
+Version: 0.1.12
 Author: Mike Fuchs <m.d.fuchs@live.de>
 Maintainer: Mike Fuchs <m.d.fuchs@live.de>
 Description: This Package runs my drift model.
