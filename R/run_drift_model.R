@@ -142,14 +142,12 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 
     # move raster file
     if (run_input[[4]][1] == 0){
-      for(i in 1:run_input[[4]][4]){
+      for(i in 1:as.numeric(run_input[[4]][4])){
         split <- strsplit(run_input[[6]][i], "/")[[1]]
         file_name <- split[length(split)]
         invisible(file.copy(run_input[[6]][i], paste0(project_path, "/", file_name), overwrite = F))
       }
     }
-
-
 
     # move executable
     split <- strsplit(executable_source, "/")[[1]]
