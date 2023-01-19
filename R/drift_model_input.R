@@ -42,6 +42,7 @@ drift_model_input <- function() {
       mode = NA,
       deposition_height = NA,
       max_dist = NA,
+      field_count = NA,
       dsd_file_name = NA,
       landscape_file_name = NA
     )
