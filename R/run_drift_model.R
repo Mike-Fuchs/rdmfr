@@ -137,8 +137,19 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     writeLines(paste0(c(sprintf(c(rep("%20s", 3)), c("mode", "dep_height", "max_dist", "field_count"))), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c("%20.0f","%20.3f","%20.0f"), run_input[[4]][1:4])), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("dsd_file_name:", run_input[[4]][5]))), collapse = ""), useBytes = F)
-    writeLines(paste0(c(sprintf(c("%-25s", rep("%-25s",run_input[[4]][4])), c("landscape_file_name:", run_input[[4]][6]))), collapse = ""), useBytes = F)
+    writeLines(paste0(c(sprintf(c("%-25s", rep("%-25s",run_input[[4]][4])), c("landscape_file_name:", run_input[[5]]))), collapse = ""), useBytes = F)
     sink()
+
+    # move raster file
+    if (run_input[[4]][1] == 0){
+      for(i in 1:eun_input[[4]][4]){
+        split <- strsplit(run_input[[6]][i], "/")[[1]]
+        file_name <- split[length(split)]
+        invisible(file.copy(run_input[[6]][i], paste0(project_path, "/", file_name), overwrite = F))
+      }
+    }
+
+
 
     # move executable
     split <- strsplit(executable_source, "/")[[1]]
@@ -152,7 +163,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     #invisible(processx::run(exe_name, wd=project_path, error_on_status = FALSE))
 
     # read results
-    if (run_input[[4]][1, 1] == 1) {
+    if (run_input[[4]][1] == 1) {
       # read drift curve
       header <- read.csv(paste0(output_path, "/drift_curve_output.txt"), sep = "", header = F, nrows = 1)
       data <- read.csv(paste0(output_path, "/drift_curve_output.txt"), sep = "", header = F, skip = 2)
