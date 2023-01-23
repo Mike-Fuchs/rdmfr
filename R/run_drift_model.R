@@ -170,6 +170,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     } else {
       # read landscape drift
       map <- raster::raster(paste0(output_path, "/landscape_drift.asc"))
+      map <- raster::readAll(map)
       return(map)
     }
   }
