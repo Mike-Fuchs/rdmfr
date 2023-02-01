@@ -34,7 +34,6 @@ drift_model_input <- function() {
       sigma_horizontal =NA,
       sigma_vertical = NA,
       roughness_height = NA,
-      A_dry_deposition = NA,
       canopy_height = NA,
       LAI = NA
     ),
