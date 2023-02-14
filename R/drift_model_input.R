@@ -37,7 +37,7 @@ drift_model_input <- function() {
       canopy_height = NA,
       LAI = NA
     ),
-    controle_input = data.frame(
+    control_input = data.frame(
       mode = NA,
       deposition_height = NA,
       max_dist = NA,
