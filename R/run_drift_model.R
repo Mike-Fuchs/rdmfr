@@ -115,7 +115,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     sink()
 
     # droplet_spectrum_input
-    sink(paste0(input_path, "/", run_input$controle_input$dsd_file_name))
+    sink(paste0(input_path, "/", run_input$control_input$dsd_file_name))
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(run_input[[2]]))), names(run_input[[2]]))), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[2]]))), header[[2]])), collapse = ""), useBytes = F)
     for (i in 1:nrow(run_input[[2]])) {
@@ -132,7 +132,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     }
     sink()
 
-    # controle_input
+    # control_input
     sink(paste0(input_path, "/", names(run_input[4]), ".txt"))
     writeLines(paste0(c(sprintf(c(rep("%20s", 4)), c("mode", "dep_height", "max_dist", "field_count"))), collapse = ""), useBytes = F)
     writeLines(paste0(c(sprintf(c("%20.0f","%20.3f","%20.0f","%20.0f"), run_input[[4]][1:4])), collapse = ""), useBytes = F)
