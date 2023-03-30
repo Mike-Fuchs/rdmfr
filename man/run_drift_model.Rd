@@ -13,7 +13,8 @@ run_drift_model(
   save_file = NULL,
   return_results = T,
   keep_folder = T,
-  quiet = F
+  quiet = F,
+  tries = 5
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ run_drift_model(
 \item{keep_folder}{(optional) Logical. If \code{keep_folder = TRUE} folder of the model run will be keept.}
 
 \item{quiet}{dummy}
+
+\item{tries}{dummy}
 }
 \value{
 dummy

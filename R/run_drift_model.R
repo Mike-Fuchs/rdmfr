@@ -9,6 +9,7 @@
 #' @param return_results dummy
 #' @param keep_folder (optional) Logical. If \code{keep_folder = TRUE} folder of the model run will be keept.
 #' @param quiet dummy
+#' @param tries dummy
 #'
 #' @return dummy
 #' @export
@@ -20,7 +21,7 @@
 #' @importFrom raster raster
 #' @importFrom utils read.csv
 #' @importFrom processx run
-run_drift_model <- function(project_folder, input_data, executable_source, parameter = NULL, n_thread = NULL, save_file = NULL, return_results = T, keep_folder = T, quiet= F) {
+run_drift_model <- function(project_folder, input_data, executable_source, parameter = NULL, n_thread = NULL, save_file = NULL, return_results = T, keep_folder = T, quiet= F, tries = 5) {
   # checking inputs
 
 
@@ -156,9 +157,22 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 
     # run executable
     setwd(project_path)
-    shell(shell(paste0(exe_name," > debug.txt")))
-
-    #invisible(processx::run(exe_name, wd=project_path, error_on_status = FALSE))
+    flag <- T
+    n_try <- 1
+    while(all(flag,n_try <= tries)){
+      # run model
+      shell(shell(paste0(exe_name," > debug.txt")))
+      # check if results exist
+      if (run_input[[4]][1] == 1) {
+        # check if drift_curve_output.txt exists
+        flag <- !file.exists(paste0(output_path, "/drift_curve_output.txt"))
+      } else {
+        # check if landscape_drift.asc exists
+        flag <- !file.exists(paste0(output_path, "/landscape_drift.asc"))
+      }
+      # itterate n_try
+      n_try <- n_try + 1
+    }
 
     # read results
     if (run_input[[4]][1] == 1) {
