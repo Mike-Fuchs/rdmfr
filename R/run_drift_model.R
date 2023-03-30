@@ -161,6 +161,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     n_try <- 1
     while(all(flag,n_try <= tries)){
       # run model
+      Sys.sleep(runif(1,min = 0,max = 1))
       shell(shell(paste0(exe_name," > debug.txt")))
       # check if results exist
       if (run_input[[4]][1] == 1) {
