@@ -194,7 +194,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 	  # stopping the cluster
 	  parallel::stopCluster(cl)
   }else{
-      output <- for(i_run in 1:n_run){
+      for(i_run in 1:n_run){
 		# define header
 		header <- list(
 		  application_input = data.frame(tractor_speed = "[m/s]", boom_width = "[m]", boom_height = "[m]", nozzle_angle = "[\u00b0]", application_pres = "[kPa]", app_rate_mh = "[m\u00b3/h]", app_rate_mha = "[m\u00b3/ha]", app_rate_kgha = "[kg/ha]", sol_concentration = "[kg/m\u00b3]", AI_density = "[kg/m\u00b3]", AI_molar_mass = "[kg/mol]", AI_vapor_pressure = "[Pa]", swath_number = "[-]", field_length = "[m]"),
@@ -311,12 +311,12 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 		  header <- read.csv(paste0(output_path, "/drift_curve_output.txt"), sep = "", header = F, nrows = 1)
 		  data <- read.csv(paste0(output_path, "/drift_curve_output.txt"), sep = "", header = F, skip = 2)
 		  names(data) <- header
-		  return(data)
+		  output <- data
 		} else {
 		  # read landscape drift
 		  map <- raster::raster(paste0(output_path, "/landscape_drift.asc"))
 		  map <- raster::readAll(map)
-		  return(map)
+		  output <- map
 		}
 	  }
   }
