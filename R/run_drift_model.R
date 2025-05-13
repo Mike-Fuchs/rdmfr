@@ -164,7 +164,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 		while(all(flag,n_try <= tries)){
 		  # run model
 		  Sys.sleep(runif(1,min = 0,max = 10))
-		  shell(paste0(exe_name," > debug.txt"))
+		  system2(exe_name, stdout = "debug.txt", stderr = "debug.txt")
 		  # check if results exist
 		  if (run_input[[4]][1] == 1) {
 			# check if drift_curve_output.txt exists
@@ -292,7 +292,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 		while(all(flag,n_try <= tries)){
 		  # run model
 		  Sys.sleep(runif(1,min = 0,max = 10))
-		  shell(paste0(exe_name," > debug.txt"))
+		  system2(exe_name, stdout = "debug.txt", stderr = "debug.txt")
 		  # check if results exist
 		  if (run_input[[4]][1] == 1) {
 			# check if drift_curve_output.txt exists
@@ -345,7 +345,6 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 
   # keep folder
   if (!keep_folder) {
-    closeAllConnections()
     for (i_run in 1:n_run) {
       unlink(paste0(project_folder, "/", run_index[i_run]), recursive = T, force = T)
     }
