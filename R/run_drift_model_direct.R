@@ -72,10 +72,12 @@ run_drift_model_direct <- function(project_folder, input_data, raster, executabl
 	}
 
 	# move executable
-	split <- strsplit(executable_source, "/")[[1]]
-	exe_name <- split[length(split)]
-	invisible(file.copy(executable_source, paste0(project_path, "/", exe_name), overwrite = F))
+	exe_name <- basename(executable_source)
+	exe_target <- file.path(project_path, exe_name)
+	success <- file.copy(executable_source, exe_target, overwrite = TRUE)
 
+	if (!success) stop("Failed to copy executable to run directory: ", exe_target)
+	
 	# run executable
 	setwd(project_path)
 	flag <- T
