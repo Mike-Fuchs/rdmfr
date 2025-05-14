@@ -73,9 +73,8 @@ run_drift_model_direct <- function(project_folder, input_data, raster, executabl
 
 	# move executable
 	exe_name <- basename(executable_source)
-	exe_target <- file.path(project_path, exe_name)
-	success <- file.copy(executable_source, exe_target, overwrite = TRUE)
-
+	exe_path_full <- file.path(project_path, exe_name)
+	success <- file.copy(executable_source, exe_path_full, overwrite = TRUE)
 	if (!success) stop("Failed to copy executable to run directory: ", exe_target)
 	
 	# run executable
@@ -84,12 +83,12 @@ run_drift_model_direct <- function(project_folder, input_data, raster, executabl
 	while(all(flag,n_try <= tries)){
 	  # run model
 	  Sys.sleep(runif(1,min = 0,max = 10))
-	  exe_path_full <- file.path(project_path, exe_name)
-	  system2(exe_path_full, 
+	  withr::with_dir(project_path, {
+		system2(exe_path_full, 
                stdout = file.path(project_path, "debug.txt"), 
                stderr = file.path(project_path, "debug.txt"),
-               wait = TRUE,
-	       wd = project_path)
+               wait = TRUE)
+	  })  
 	  # check if results exist
 	  if (input_data[[4]][1] == 1) {
 		# check if drift_curve_output.txt exists
