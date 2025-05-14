@@ -85,10 +85,11 @@ run_drift_model_direct <- function(project_folder, input_data, raster, executabl
 	  # run model
 	  Sys.sleep(runif(1,min = 0,max = 10))
 	  exe_path_full <- file.path(project_path, exe_name)
-	system2(exe_path_full, 
-        	stdout = file.path(project_path, "debug.txt"), 
-        	stderr = file.path(project_path, "debug.txt"),
-        	wait = TRUE)
+	  system2(exe_path_full, 
+               stdout = file.path(project_path, "debug.txt"), 
+               stderr = file.path(project_path, "debug.txt"),
+               wait = TRUE,
+	       wd = project_path)
 	  # check if results exist
 	  if (input_data[[4]][1] == 1) {
 		# check if drift_curve_output.txt exists
