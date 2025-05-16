@@ -18,6 +18,7 @@
 #' @importFrom raster raster
 #' @importFrom utils read.csv
 #' @importFrom processx run
+#' @importFrom withr with_dir
 run_drift_model_lite <- function(project_folder, input_data, executable_source, save_file = NULL, return_results = T, keep_folder = T, tries = 5) {
   # define header
 	header <- list(
