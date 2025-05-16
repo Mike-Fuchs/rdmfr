@@ -76,18 +76,23 @@ run_drift_model_lite <- function(project_folder, input_data, executable_source, 
 	}
 
 	# move executable
-	split <- strsplit(executable_source, "/")[[1]]
-	exe_name <- split[length(split)]
-	invisible(file.copy(executable_source, paste0(project_path, "/", exe_name), overwrite = F))
-
+	exe_name <- basename(executable_source)
+	exe_path_full <- file.path(project_path, exe_name)
+	success <- file.copy(executable_source, exe_path_full, overwrite = TRUE)
+	if (!success) stop("Failed to copy executable to run directory: ", exe_target)
+	
 	# run executable
-	setwd(project_path)
 	flag <- T
 	n_try <- 1
 	while(all(flag,n_try <= tries)){
 	  # run model
 	  Sys.sleep(runif(1,min = 0,max = 10))
-	  system2(exe_name, stdout = "debug.txt", stderr = "debug.txt")
+	  withr::with_dir(project_path, {
+		system2(exe_path_full, 
+               stdout = file.path(project_path, "debug.txt"), 
+               stderr = file.path(project_path, "debug.txt"),
+               wait = TRUE)
+	  })  
 	  # check if results exist
 	  if (input_data[[4]][1] == 1) {
 		# check if drift_curve_output.txt exists
