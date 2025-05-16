@@ -21,6 +21,7 @@
 #' @importFrom raster raster
 #' @importFrom utils read.csv
 #' @importFrom processx run
+#' @importFrom withr with_dir
 run_drift_model <- function(project_folder, input_data, executable_source, parameter = NULL, n_thread = NULL, save_file = NULL, return_results = T, keep_folder = T, quiet= F, tries = 5, dopar = F) {
   # checking inputs
 
