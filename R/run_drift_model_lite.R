@@ -64,7 +64,7 @@ run_drift_model_lite <- function(project_folder, input_data, executable_source, 
 	writeLines(paste0(c(sprintf(c(rep("%20s", 4)), c("mode", "dep_height", "max_dist", "field_count"))), collapse = ""), useBytes = F)
 	writeLines(paste0(c(sprintf(c("%20.0f","%20.3f","%20.0f","%20.0f"), input_data[[4]][1:4])), collapse = ""), useBytes = F)
 	writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("dsd_file_name:", input_data[[4]][5]))), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c("%-25s", rep("%-25s",input_data[[4]][4])), c("landscape_file_name:", input_data[[5]]))), collapse = ""), useBytes = F)
+	writeLines(paste0(c(sprintf(c("%-25s", rep("%-40s",input_data[[4]][4])), c("landscape_file_name:", input_data[[5]]))), collapse = ""), useBytes = F)
 	sink()
 
 	# move raster file
