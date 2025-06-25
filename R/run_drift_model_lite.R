@@ -52,6 +52,7 @@ run_drift_model_lite <- function(project_folder, input_data, executable_source, 
 	for (i in 1:nrow(input_data[[2]])) {
 	  writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), con = con_file, useBytes = F)
 	}
+	flush(con_file)
 	close(con_file)
 
 	# environment_input
