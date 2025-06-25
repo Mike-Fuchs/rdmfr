@@ -49,7 +49,9 @@ run_drift_model_lite <- function(project_folder, input_data, executable_source, 
 	sink(paste0(input_path, "/", input_data$control_input$dsd_file_name))
 	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[2]]))), names(input_data[[2]]))), collapse = ""), useBytes = F)
 	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[2]]))), header[[2]])), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][1, ])), collapse = ""), useBytes = F)
+	for (i in 1:nrow(input_data[[2]])) {
+	  writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), useBytes = F)
+	}
 	sink()
 
 	# environment_input
