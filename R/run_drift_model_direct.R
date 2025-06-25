@@ -39,39 +39,39 @@ run_drift_model_direct <- function(project_folder, input_data, raster, executabl
 	dir.create(output_path, showWarnings = FALSE)
 
 	# application_input
-	sink(paste0(input_path, "/", names(input_data[1]), ".txt"))
-	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[1]]))), names(input_data[[1]]))), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[1]]))), header[[1]])), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c(rep("%20.2f", 5),rep("%20.2e", 4),"%20.2f","%20.2e","%20.2e","%20.2f","%20.2f"), input_data[[1]][1, ])), collapse = ""), useBytes = F)
-	sink()
+	con_file <- file(paste0(input_path, "/", names(input_data[1]), ".txt"),open="wt")
+	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[1]]))), names(input_data[[1]]))), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[1]]))), header[[1]])), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0(c(sprintf(c(rep("%20.2f", 5),rep("%20.2e", 4),"%20.2f","%20.2e","%20.2e","%20.2f","%20.2f"), input_data[[1]][1, ])), collapse = ""), con = con_file, useBytes = F)
+	close(con_file)
 
 	# droplet_spectrum_input
-	sink(paste0(input_path, "/", input_data$control_input$dsd_file_name))
-	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[2]]))), names(input_data[[2]]))), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[2]]))), header[[2]])), collapse = ""), useBytes = F)
+	con_file <- file(paste0(input_path, "/", input_data$control_input$dsd_file_name),open="wt")
+	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[2]]))), names(input_data[[2]]))), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[2]]))), header[[2]])), collapse = ""), con = con_file, useBytes = F)
 	for (i in 1:nrow(input_data[[2]])) {
-	  writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), useBytes = F)
+	  writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), con = con_file, useBytes = F)
 	}
-	sink()
+	close(con_file)
 
 	# environment_input
-	sink(paste0(input_path, "/", names(input_data[3]), ".txt"))
-	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[3]]))), names(input_data[[3]]))), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[3]]))), header[[3]])), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c(rep("%20.2f", 6),rep("%20.2e", 3),rep("%20.2f", 2)), input_data[[3]][1, ])), collapse = ""), useBytes = F)
-	sink()
+	con_file <- file(paste0(input_path, "/", names(input_data[3]), ".txt"),open="wt")
+	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[3]]))), names(input_data[[3]]))), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[3]]))), header[[3]])), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0(c(sprintf(c(rep("%20.2f", 6),rep("%20.2e", 3),rep("%20.2f", 2)), input_data[[3]][1, ])), collapse = ""), con = con_file, useBytes = F)
+	close(con_file)
 
 	# control_input
-	sink(paste0(input_path, "/", names(input_data[4]), ".txt"))
-	writeLines(paste0(c(sprintf(c(rep("%20s", 4)), c("mode", "dep_height", "max_dist", "field_count"))), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c("%20.0f","%20.3f","%20.0f","%20.0f"), input_data[[4]][1:4])), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("dsd_file_name:", input_data[[4]][5]))), collapse = ""), useBytes = F)
-	writeLines(paste0(c(sprintf(c("%-25s", rep("%-25s",input_data[[4]][4])), c("landscape_file_name:", input_data[[5]]))), collapse = ""), useBytes = F)
-	sink()
+	con_file <- file(paste0(input_path, "/", names(input_data[4]), ".txt"),open="wt")
+	writeLines(paste0(c(sprintf(c(rep("%20s", 4)), c("mode", "dep_height", "max_dist", "field_count"))), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0(c(sprintf(c("%20.0f","%20.3f","%20.0f","%20.0f"), input_data[[4]][1:4])), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0(c(sprintf(c("%-25s", "%-25s"), c("dsd_file_name:", input_data[[4]][5]))), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0(c(sprintf(c("%-25s", rep("%-25s",input_data[[4]][4])), c("landscape_file_name:", input_data[[5]]))), collapse = ""), con = con_file, useBytes = F)
+	close(con_file)
 
 	# move raster file
 	if (input_data[[4]][1] == 0){
-	  writeRaster(raster,paste0(project_path,"/input/",input[[5]][1]))
+	  writeRaster(raster,paste0(project_path,"/input/",input_data[[5]][1]))
 	}
 
 	# move executable
