@@ -46,7 +46,7 @@ run_drift_model_lite <- function(project_folder, input_data, executable_source, 
 	close(con_file)
 
 	# droplet_spectrum_input
-	debug_con <-  file(paste0(project_path, "/debug.txt"),open="wt")
+	debug_con <-  file(paste0(project_folder, "/debugg.txt"),open="wt")
 	writeLines(paste0("nrow: ", nrow(input_data[[2]])), debug_con)
 	
 	con_file <- file(paste0(input_path, "/", input_data$control_input$dsd_file_name),open="wt")
