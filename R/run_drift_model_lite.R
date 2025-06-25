@@ -46,13 +46,25 @@ run_drift_model_lite <- function(project_folder, input_data, executable_source, 
 	close(con_file)
 
 	# droplet_spectrum_input
+	#con_file <- file(paste0(input_path, "/", input_data$control_input$dsd_file_name),open="wt")
+	#writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[2]]))), names(input_data[[2]]))), collapse = ""), con = con_file, useBytes = F)
+	#writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[2]]))), header[[2]])), collapse = ""), con = con_file, useBytes = F)
+	#for (i in 1:nrow(input_data[[2]])) {
+	#  writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), con = con_file, useBytes = F)
+	#}
+	#flush(con_file)
+	#close(con_file)
+
+	# droplet_spectrum_input
 	con_file <- file(paste0(input_path, "/", input_data$control_input$dsd_file_name),open="wt")
-	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[2]]))), names(input_data[[2]]))), collapse = ""), con = con_file, useBytes = F)
-	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[2]]))), header[[2]])), collapse = ""), con = con_file, useBytes = F)
+	cat(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[2]]))), names(input_data[[2]]))), collapse = ""), file = con_file)
+	cat("\n", file = con_file, append = T)
+	cat(paste0(c(sprintf(c(rep("%20s", ncol(header[[2]]))), header[[2]])), collapse = ""), file = con_file, append = T)
+	cat("\n", file = con_file, append = T)
 	for (i in 1:nrow(input_data[[2]])) {
-	  writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), con = con_file, useBytes = F)
+	  cat(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), file = con_file, append = T)
+	  cat("\n", file = con_file, append = T)
 	}
-	flush(con_file)
 	close(con_file)
 
 	# environment_input
