@@ -52,7 +52,7 @@ run_drift_model_lite <- function(project_folder, input_data, executable_source, 
 	for (i in 1:nrow(input_data[[2]])) {
 	  writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), con = con_file, useBytes = F)
 	}
-	close(debug_con)
+	close(con_file)
 	
 	# environment_input
 	con_file <- file(paste0(input_path, "/", names(input_data[3]), ".txt"),open="wt")
