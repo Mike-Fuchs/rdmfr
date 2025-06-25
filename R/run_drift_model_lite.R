@@ -46,18 +46,14 @@ run_drift_model_lite <- function(project_folder, input_data, executable_source, 
 	close(con_file)
 
 	# droplet_spectrum_input
-	debug_con <-  file("C:/Users/Fuchs/Desktop/debugg.txt",open="wt")
-	writeLines(paste0("nrow: ", nrow(input_data[[2]])), con = debug_con)
-	
 	con_file <- file(paste0(input_path, "/", input_data$control_input$dsd_file_name),open="wt")
 	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[2]]))), names(input_data[[2]]))), collapse = ""), con = con_file, useBytes = F)
 	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[2]]))), header[[2]])), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0("nrow: ", nrow(input_data[[2]])), con = con_file)
 	for (i in 1:nrow(input_data[[2]])) {
-	  writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), con = con_file, useBytes = F)
-		 
-	  writeLines(paste0("writing row i = ", i), con = debug_con)
+	  #writeLines(paste0(c(sprintf(c("%20.6e", "%20.10e"), input_data[[2]][i, ])), collapse = ""), con = con_file, useBytes = F)
+	  writeLines(paste0("writing row i = ", i), con = con_file)
 	}
-	close(con_file)
 	close(debug_con)
 	
 	# droplet_spectrum_input
