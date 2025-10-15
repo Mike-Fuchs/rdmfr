@@ -35,7 +35,8 @@ drift_model_input <- function() {
       sigma_vertical = NA,
       roughness_height = NA,
       canopy_height = NA,
-      LAI = NA
+      LAI = NA,
+      k_skew=NA
     ),
     control_input = data.frame(
       mode = NA,
@@ -49,3 +50,4 @@ drift_model_input <- function() {
   )
   return(data)
 }
+
