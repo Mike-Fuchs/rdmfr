@@ -82,7 +82,7 @@ run_drift_model_lite <- function(project_folder, input_data, executable_source, 
 	exe_name <- basename(executable_source)
 	exe_path_full <- file.path(project_path, exe_name)
 	success <- file.copy(executable_source, exe_path_full, overwrite = TRUE)
-	if (!success) stop("Failed to copy executable to run directory: ", exe_target)
+	if (!success) stop("Failed to copy executable to run directory: ", exe_path_full )
 	
 	# run executable
 	flag <- T
