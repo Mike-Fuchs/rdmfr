@@ -58,7 +58,7 @@ run_drift_model_direct <- function(project_folder, input_data, raster, executabl
 	con_file <- file(paste0(input_path, "/", names(input_data[3]), ".txt"),open="wt")
 	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(input_data[[3]]))), names(input_data[[3]]))), collapse = ""), con = con_file, useBytes = F)
 	writeLines(paste0(c(sprintf(c(rep("%20s", ncol(header[[3]]))), header[[3]])), collapse = ""), con = con_file, useBytes = F)
-	writeLines(paste0(c(sprintf(c(rep("%20.2f", 6),rep("%20.2e", 3),rep("%20.2f", 2)), input_data[[3]][1, ])), collapse = ""), con = con_file, useBytes = F)
+	writeLines(paste0(c(sprintf(c(rep("%20.2f", 6),rep("%20.2e", 3),rep("%20.2f", 2),"%20.2e"), input_data[[3]][1, ])), collapse = ""), con = con_file, useBytes = F)
 	close(con_file)
 
 	# control_input
