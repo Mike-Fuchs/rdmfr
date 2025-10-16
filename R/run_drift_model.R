@@ -72,7 +72,7 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
 		header <- list(
 		  application_input = data.frame(tractor_speed = "[m/s]", boom_width = "[m]", boom_height = "[m]", nozzle_angle = "[\u00b0]", application_pres = "[kPa]", app_rate_mh = "[m\u00b3/h]", app_rate_mha = "[m\u00b3/ha]", app_rate_kgha = "[kg/ha]", sol_concentration = "[kg/m\u00b3]", AI_density = "[kg/m\u00b3]", AI_molar_mass = "[kg/mol]", AI_vapor_pressure = "[Pa]", swath_number = "[-]", field_length = "[m]"),
 		  droplet_spectrum_input = data.frame(droplet_size = "[m]", cum_fraction = "[-]"),
-		  environment_input = data.frame(temperature = "[\u00b0C]", humidity = "[-]", wind_speed = "[m/s]", wind_height = "[m]", wind_direction = "[\u00b0]", ambient_pressure = "[kPa]",sigma_horizontal = "[m]", sigma_vertical = "[m]", roughness_height = "[m]", Hc = "[m]", LAI = "m\u00b2/m\u00b2"))
+		  environment_input = data.frame(temperature = "[\u00b0C]", humidity = "[-]", wind_speed = "[m/s]", wind_height = "[m]", wind_direction = "[\u00b0]", ambient_pressure = "[kPa]",sigma_horizontal = "[m]", sigma_vertical = "[m]", roughness_height = "[m]", Hc = "[m]", LAI = "m\u00b2/m\u00b2",k_skew="[-]"))
 
 		# input manipulation
 		if (!is.null(parameter)) {
@@ -366,3 +366,4 @@ run_drift_model <- function(project_folder, input_data, executable_source, param
     return(result)
   }
 }
+
